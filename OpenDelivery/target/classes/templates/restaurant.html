@@ -1,10 +1,84 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="it" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets/css/normalize.css">
+    <link rel="stylesheet" href="assets/css/main.css">
+    <title>Open delivery resturant</title>
 </head>
 <body>
+<div class="container">
+    <div class="carouselcontainer"  >
+        <div class="carouselcontaianer__carousel">
+            <div class="carouselcontainer__carousel__card">
+                <p>test</p>
+            </div>
+        </div>
 
+    </div>
+
+    <div class="categoriescontainer">
+        <h5 class="categoriescontainer__title">Categorie</h5>
+        <button class="categoriescontainer__category">pizza</button>
+    </div>
+    <content class="contentcontainer">
+        <div class="nearyoucontainer" id="ristorantiConsigliati" >
+            <div class="nearyoucontainer__titlecontainer">
+                <h5>I ristoranti più vicini a te:</h5>
+                <p class="nearyoucontainer__titlecontainer__more">Vedi altro ></p>
+            </div>
+            <div class="nearyoucontainer__cards">
+                <div class="fullcard">
+                    <img src="assets/images/pizza brutta.jpg" alt="">
+                    <h5 class="fullcard__title"></h5>
+                    <p class="fullcard__subtitle"></p>
+                    <span class="currency">$$</span>
+                </div>
+                <div class="fullcard">
+                    <img src="assets/images/pizza brutta.jpg" alt="">
+                    <h5 class="fullcard__title"></h5>
+                    <p class="fullcard__subtitle"></p>
+                    <span class="currency"></span>
+                </div>
+            </div>
+
+
+        </div>
+        <div class="nearyoucontainer" id="piattiConsigliati" >
+            <div class="nearyoucontainer__titlecontainer">
+                <h5>Altro per te:</h5>
+            </div>
+            <div class="nearyoucontainer__cards">
+                <a class="fullcard" th:each="consigliato:${consigliati}" th:id="'consigliato'+${consigliato.getId()}" th:href="@{plate(id=${consigliato.getId()})}">
+                    <img src="assets/images/pizza brutta.jpg" alt="">
+                    <h5 class="fullcard__title" th:text="${consigliato.getNome()}"></h5>
+                    <p class="fullcard__subtitle" th:text="${consigliato.getDescrizione()}"></p>
+                    <span class="fullcard__price" th:text="${consigliato.getPrezzo()}"><span class="currency">$</span></span>
+                </a>
+            </div>
+        </div>
+    </content>
+
+    <footer class="uicontainer">
+        <div class="uielement">
+            <img src="assets/icons/menu.svg" alt="homepage" class="icon" id="homepage">
+            <p></p>
+        </div>
+        <div class="uielement">
+            <img src="assets/icons/search.svg" alt="cerca" class="icon" id="search">
+            <p></p>
+        </div>
+        <div class="uielement">
+            <img src="assets/icons/bookmark.svg" alt="salvati" class="icon" id="bookmark">
+            <p></p>
+        </div>
+        <a class="uielement" th:href="@{profile(email=${utente.getMail()}, password=${utente.getPassword()})}">
+            <img src="assets/icons/user.svg" alt="profilo" class="icon" id="profile">
+            <p></p>
+        </a>
+    </footer>
+</div>
 </body>
 </html>
